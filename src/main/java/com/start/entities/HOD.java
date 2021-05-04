@@ -12,6 +12,7 @@ public class HOD {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int Sid;
 	private String Hname;
+	private String Hlastname;
 	public int getSid() {
 		return Sid;
 	}
@@ -28,10 +29,18 @@ public class HOD {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public HOD(String hname) {
+	public String getHlastname() {
+		return Hlastname;
+	}
+	public void setHlastname(String hlastname) {
+		Hlastname = hlastname;
+	}
+	public HOD(String hname, String hlastname) {
 		super();
 		Hname = hname;
+		Hlastname = hlastname;
 	}
+	
 	
 	
 }
