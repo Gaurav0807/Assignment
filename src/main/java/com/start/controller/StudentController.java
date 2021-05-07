@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import com.start.entities.Student;
 import com.start.exception.CustomErrorType;
 import com.start.exception.ResourceNotFoundException;
 import com.start.repositories.StudentRepository;
+import com.start.timerplayground.PlaygroundService;
 
 
 
@@ -36,6 +38,9 @@ public class StudentController {
 
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private PlaygroundService p;
 	
 	
 	@GetMapping("/students")
@@ -95,6 +100,20 @@ public class StudentController {
 		studentRepository.delete(student);
 		
 		return new ResponseEntity<Student>(HttpStatus.NO_CONTENT);
+	}
+	@Autowired
+	private Environment env;
+	
+	@GetMapping("/envdetails")
+	public  String envDetails()
+	{
+		return env.getProperty("server.port");
+	}
+	
+	@PostMapping("/hello")
+	public void runHello()
+	{
+		p.runHelloWorld();
 	}
 	
 }
